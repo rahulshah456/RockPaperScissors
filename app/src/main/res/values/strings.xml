@@ -8,4 +8,10 @@
     <string name="camera_desc">Capture and detect image directly from your device camera.</string>
     <string name="live_header">Live Detection</string>
     <string name="live_desc">Play with your fingers live on your device camera and detect gestures instantly.</string>
+    <string name="thumbnail">thumbnail</string>
+    <string name="processing">Processing…</string>
+    <string name="rock">Rock!</string>
+    <string name="paper">Paper!</string>
+    <string name="scissor">Scissor!</string>
+    <string name="probability">Probability: 0.0000</string>
 </resources>
