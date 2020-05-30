@@ -9,8 +9,6 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -25,12 +23,11 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
 import com.example.retailpulseassignment.R;
-import com.example.retailpulseassignment.utils.CalculateResult;
+import com.example.retailpulseassignment.tflite.Classifier;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.firebase.ml.common.FirebaseMLException;
-import com.google.firebase.ml.custom.FirebaseCustomLocalModel;
 import com.google.firebase.ml.custom.FirebaseCustomRemoteModel;
 import com.google.firebase.ml.custom.FirebaseModelDataType;
 import com.google.firebase.ml.custom.FirebaseModelInputOutputOptions;
@@ -39,16 +36,8 @@ import com.google.firebase.ml.custom.FirebaseModelInterpreter;
 import com.google.firebase.ml.custom.FirebaseModelInterpreterOptions;
 import com.google.firebase.ml.custom.FirebaseModelOutputs;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.StringTokenizer;
 
 public class GalleryActivity extends AppCompatActivity {
 
@@ -144,7 +133,7 @@ public class GalleryActivity extends AppCompatActivity {
     private float[][][][] bitmapToInputArray(Bitmap resource) {
         // [START mlKit_bitmap_input]
         Bitmap bitmap = resource;
-        bitmap = Bitmap.createScaledBitmap(bitmap, 300, 300, true);
+        bitmap = Bitmap.createScaledBitmap(bitmap, 300, 300, false);
         thumbnail.setImageBitmap(bitmap);
 
         int batchNum = 0;
@@ -164,6 +153,8 @@ public class GalleryActivity extends AppCompatActivity {
 
         return input;
     }
+
+
     private FirebaseModelInputOutputOptions createInputOutputOptions() throws FirebaseMLException {
         return new FirebaseModelInputOutputOptions.Builder()
                 .setInputFormat(0, FirebaseModelDataType.FLOAT32, new int[]{1, 300, 300, 3})
@@ -206,7 +197,7 @@ public class GalleryActivity extends AppCompatActivity {
                                 float[][] output = result.getOutput(0);
                                 float[] probabilities = output[0];
                                 try {
-                                    int actualResult = new CalculateResult(GalleryActivity.this).getResult(probabilities);
+                                    int actualResult = new Classifier(GalleryActivity.this).getResult(probabilities);
                                     switch (actualResult){
                                         case 0:
                                             textView.setText(getResources().getString(R.string.rock));

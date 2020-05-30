@@ -1,4 +1,4 @@
-package com.example.retailpulseassignment.utils;
+package com.example.retailpulseassignment.tflite;
 
 import android.content.Context;
 import android.util.Log;
@@ -9,19 +9,18 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.StringTokenizer;
 
-public class CalculateResult {
+public class Classifier {
 
-    public static final String TAG = CalculateResult.class.getSimpleName();
+    public static final String TAG = Classifier.class.getSimpleName();
     private Context mContext;
 
-    public CalculateResult(Context mContext) {
+    public Classifier(Context mContext) {
         this.mContext = mContext;
     }
 
@@ -30,8 +29,9 @@ public class CalculateResult {
         Map<Integer,float[]> allProbabilities = getAllProbabilities();
         double[] euclideanDistances = new double[32];
         for (int i =0;i<allProbabilities.size();i++){
-            euclideanDistances[i] = new EuclideanDistance().compute(convertFloatsToDoubles(outProbabilities),
-                    Objects.requireNonNull(convertFloatsToDoubles(allProbabilities.get(i))));
+            euclideanDistances[i] = new EuclideanDistance()
+                    .compute(Objects.requireNonNull(convertFloatsToDoubles(allProbabilities.get(i))),
+                            convertFloatsToDoubles(outProbabilities));
         }
         return getLabelResult(euclideanDistances);
     }
