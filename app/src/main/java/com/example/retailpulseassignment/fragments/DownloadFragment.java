@@ -16,8 +16,8 @@ import com.google.firebase.ml.common.modeldownload.FirebaseModelDownloadConditio
 import com.google.firebase.ml.common.modeldownload.FirebaseModelManager;
 import com.google.firebase.ml.custom.FirebaseCustomRemoteModel;
 
-public class DownloadModelFragment extends Fragment {
-    public static final String TAG = DownloadModelFragment.class.getSimpleName();
+public class DownloadFragment extends Fragment {
+    public static final String TAG = DownloadFragment.class.getSimpleName();
 
     @Nullable
     @Override
@@ -37,9 +37,7 @@ public class DownloadModelFragment extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         // Success.
-                        Log.d(TAG, "onComplete: model downloaded!");
                         replaceFragment();
-
                     }
                 });
     }
