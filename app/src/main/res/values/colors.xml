@@ -6,5 +6,6 @@
 
     <color name="splash_background">#FFFFFF</color>
     <color name="app_bar_color">#6200EE</color>
-    <color name="text_color_primary">#FFFFFF</color>
+    <color name="text_color_header">#FFFFFF</color>
+    <color name="text_color_primary">#000000</color>
 </resources>
