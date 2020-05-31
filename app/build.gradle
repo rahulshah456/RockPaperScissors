@@ -52,5 +52,8 @@ dependencies {
     //Apache Commons for Numerical Computation
     implementation 'org.apache.commons:commons-math3:3.6.1'
 
+    //Camera Library for live prediction
+    implementation  'com.wonderkiln:camerakit:0.13.1'
+
 
 }

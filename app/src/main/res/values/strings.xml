@@ -13,4 +13,6 @@
     <string name="scissor">Scissor!</string>
     <string name="probability">Probability: Not Available</string>
     <string name="downloading_ml_model">Downloading ML Model</string>
+    <string name="predict">Predict</string>
+    <string name="live_prediction_desc">Live Camera Prediction</string>
 </resources>
