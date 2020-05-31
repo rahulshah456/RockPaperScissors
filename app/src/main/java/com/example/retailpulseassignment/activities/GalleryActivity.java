@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,7 +22,8 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
 import com.example.retailpulseassignment.R;
-import com.example.retailpulseassignment.tflite.Classifier;
+import com.example.retailpulseassignment.mlkit.AssetsLoader;
+import com.example.retailpulseassignment.mlkit.Classifier;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -37,7 +37,7 @@ import com.google.firebase.ml.custom.FirebaseModelInterpreterOptions;
 import com.google.firebase.ml.custom.FirebaseModelOutputs;
 
 import java.io.IOException;
-import java.util.Arrays;
+import java.nio.ByteBuffer;
 
 public class GalleryActivity extends AppCompatActivity {
 
@@ -93,8 +93,7 @@ public class GalleryActivity extends AppCompatActivity {
     }
 
 
-
-    /** Firebase MlKit Methods */
+    /** Local Image Actions */
     private void pickImage(){
         Intent intent = new Intent();
         intent.setType("image/*");
@@ -130,31 +129,9 @@ public class GalleryActivity extends AppCompatActivity {
                 })
                 .into(thumbnail);
     }
-    private float[][][][] bitmapToInputArray(Bitmap resource) {
-        // [START mlKit_bitmap_input]
-        Bitmap bitmap = resource;
-        bitmap = Bitmap.createScaledBitmap(bitmap, 300, 300, false);
-        thumbnail.setImageBitmap(bitmap);
-
-        int batchNum = 0;
-        float[][][][] input = new float[1][300][300][3];
-        for (int x = 0; x < 300; x++) {
-            for (int y = 0; y < 300; y++) {
-                int pixel = bitmap.getPixel(x, y);
-                // Normalize channel values to [-1.0, 1.0]. This requirement varies by
-                // model. For example, some models might require values to be normalized
-                // to the range [0.0, 1.0] instead.
-                input[batchNum][x][y][0] = (Color.red(pixel)) / 255.0f;
-                input[batchNum][x][y][1] = (Color.green(pixel)) / 255.0f;
-                input[batchNum][x][y][2] = (Color.blue(pixel)) / 255.0f;
-            }
-        }
-        // [END mlKit_bitmap_input]
-
-        return input;
-    }
 
 
+    /** Firebase MlKit Methods */
     private FirebaseModelInputOutputOptions createInputOutputOptions() throws FirebaseMLException {
         return new FirebaseModelInputOutputOptions.Builder()
                 .setInputFormat(0, FirebaseModelDataType.FLOAT32, new int[]{1, 300, 300, 3})
@@ -180,13 +157,19 @@ public class GalleryActivity extends AppCompatActivity {
         FirebaseCustomRemoteModel remoteModel = new FirebaseCustomRemoteModel.Builder("rps_model").build();
         FirebaseModelInterpreter firebaseInterpreter = createInterpreter(remoteModel);
 
-        float[][][][] input = bitmapToInputArray(resource);
+        // Input and Outputs init
         FirebaseModelInputOutputOptions inputOutputOptions = createInputOutputOptions();
 
-        // [START mlKit_run_inference]
+        // Normalizing and Scaling the input image
+        Bitmap bitmap = resource;
+        bitmap = Bitmap.createScaledBitmap(bitmap, 300, 300, false);
+        ByteBuffer byteBuffer = Classifier.convertBitmapToByteBuffer(bitmap);
         FirebaseModelInputs inputs = new FirebaseModelInputs.Builder()
-                .add(input)  // add() as many input arrays as your model requires
+                .add(byteBuffer)  // add() as many input arrays as your model requires
                 .build();
+
+
+        // [START mlKit_run_inference]
         firebaseInterpreter.run(inputs, inputOutputOptions)
                 .addOnSuccessListener(
                         new OnSuccessListener<FirebaseModelOutputs>() {
@@ -196,22 +179,7 @@ public class GalleryActivity extends AppCompatActivity {
                                 // [START mlKit_read_result]
                                 float[][] output = result.getOutput(0);
                                 float[] probabilities = output[0];
-                                try {
-                                    int actualResult = new Classifier(GalleryActivity.this).getResult(probabilities);
-                                    switch (actualResult){
-                                        case 0:
-                                            textView.setText(getResources().getString(R.string.rock));
-                                            break;
-                                        case 1:
-                                            textView.setText(getResources().getString(R.string.paper));
-                                            break;
-                                        case 2:
-                                            textView.setText(getResources().getString(R.string.scissor));
-                                            break;
-                                    }
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
+                                FindImageResult(probabilities);
 
                                 // [END mlKit_read_result]
                                 // [END_EXCLUDE]
@@ -226,6 +194,37 @@ public class GalleryActivity extends AppCompatActivity {
                             }
                         });
         // [END mlKit_run_inference]
+    }
+
+
+    /** Result Computation for selected Image */
+    private void FindImageResult(float[] mProbabilities){
+
+        AssetsLoader loader = new AssetsLoader(GalleryActivity.this);
+        int resultLabel = -1;
+        try {
+            resultLabel = new Classifier(loader.LoadOutputLabels(), loader.LoadOutputVectors())
+                    .getResult(mProbabilities);
+            UpdateResult(resultLabel);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void UpdateResult(int label){
+        if (label!=-1){
+            switch (label){
+                case 0:
+                    textView.setText(getResources().getString(R.string.rock));
+                    break;
+                case 1:
+                    textView.setText(getResources().getString(R.string.paper));
+                    break;
+                case 2:
+                    textView.setText(getResources().getString(R.string.scissor));
+                    break;
+            }
+        }
     }
 
 
