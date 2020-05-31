@@ -1,11 +1,11 @@
-package com.example.retailpulseassignment.activities;
+package com.example.retailpulseassignment.views.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
 import com.example.retailpulseassignment.R;
-import com.example.retailpulseassignment.fragments.DownloadFragment;
+import com.example.retailpulseassignment.views.fragments.DownloadFragment;
 
 public class MainActivity extends AppCompatActivity {
 

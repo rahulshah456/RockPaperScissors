@@ -1,18 +1,17 @@
-package com.example.retailpulseassignment.activities;
+package com.example.retailpulseassignment.views.fragments;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
+import android.content.Context;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
@@ -26,7 +25,6 @@ import com.example.retailpulseassignment.mlkit.AssetsLoader;
 import com.example.retailpulseassignment.mlkit.Classifier;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.appbar.MaterialToolbar;
 import com.google.firebase.ml.common.FirebaseMLException;
 import com.google.firebase.ml.custom.FirebaseCustomRemoteModel;
 import com.google.firebase.ml.custom.FirebaseModelDataType;
@@ -39,71 +37,53 @@ import com.google.firebase.ml.custom.FirebaseModelOutputs;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 
-public class GalleryActivity extends AppCompatActivity {
+import static com.example.retailpulseassignment.utils.Constants.IMAGE_URL;
 
-    public static final String TAG = GalleryActivity.class.getSimpleName();
-    public static final int PICK_IMAGE_REQUEST = 2;
-    public static final String IMAGE_URL = "image_url";
+public class SoloGalleryFragment extends Fragment {
+
+    public static final String TAG = SoloGalleryFragment.class.getSimpleName();
+    private Context mContext;
     private TextView textView;
-    private String imageUri = null;
     private ImageView thumbnail;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_gallery);
 
-        MaterialToolbar toolbar = findViewById(R.id.mainToolbarId);
-        thumbnail = findViewById(R.id.iv_thumbnail);
-        textView = findViewById(R.id.tv_header);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
-
-        if (savedInstanceState!=null){
-            imageUri = savedInstanceState.getString(IMAGE_URL,null);
-            loadImage();
-        } else pickImage();
+    public static SoloGalleryFragment newInstance(String imageURL) {
+        SoloGalleryFragment fragment = new SoloGalleryFragment();
+        Bundle args = new Bundle();
+        args.putString(IMAGE_URL, imageURL);
+        fragment.setArguments(args);
+        return fragment;
     }
 
+
+
+    @Nullable
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_solo,container,false);
+    }
 
-        if (requestCode == PICK_IMAGE_REQUEST){
 
-            if (data == null) {
-                Toast.makeText(this,"Failed to load image!",Toast.LENGTH_LONG).show();
-                onBackPressed();
-            } else {
-                Uri uri = data.getData();
-                if (uri!=null){
-                    imageUri = String.valueOf(uri);
-                    loadImage();
-                }else {
-                    Toast.makeText(this,"No Image Selected!",Toast.LENGTH_LONG).show();
-                    onBackPressed();
-                }
-            }
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        mContext = getContext();
+        textView = view.findViewById(R.id.tv_header);
+        thumbnail = view.findViewById(R.id.iv_thumbnail);
+
+        Bundle bundle = getArguments();
+        if (bundle!=null){
+            loadImage(bundle.getString(IMAGE_URL));
         }
 
     }
 
 
-    /** Local Image Actions */
-    private void pickImage(){
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(intent,PICK_IMAGE_REQUEST);
-    }
-    private void loadImage(){
+    private void loadImage(String imageURL){
         Glide.with(this)
                 .asBitmap()
-                .load(imageUri)
+                .load(imageURL)
                 .apply(new RequestOptions()
                         .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .centerCrop())
@@ -200,7 +180,7 @@ public class GalleryActivity extends AppCompatActivity {
     /** Result Computation for selected Image */
     private void FindImageResult(float[] mProbabilities){
 
-        AssetsLoader loader = new AssetsLoader(GalleryActivity.this);
+        AssetsLoader loader = new AssetsLoader(mContext);
         int resultLabel = -1;
         try {
             resultLabel = new Classifier(loader.LoadOutputLabels(), loader.LoadOutputVectors())
@@ -225,12 +205,5 @@ public class GalleryActivity extends AppCompatActivity {
                     break;
             }
         }
-    }
-
-
-    @Override
-    protected void onSaveInstanceState(@NonNull Bundle outState) {
-        outState.putString(IMAGE_URL,imageUri);
-        super.onSaveInstanceState(outState);
     }
 }

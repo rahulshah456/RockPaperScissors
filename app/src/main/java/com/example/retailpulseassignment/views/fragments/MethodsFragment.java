@@ -1,4 +1,4 @@
-package com.example.retailpulseassignment.fragments;
+package com.example.retailpulseassignment.views.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,8 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import com.example.retailpulseassignment.R;
-import com.example.retailpulseassignment.activities.GalleryActivity;
-import com.google.android.material.card.MaterialCardView;
+import com.example.retailpulseassignment.views.activities.CameraActivity;
+import com.example.retailpulseassignment.views.activities.GalleryActivity;
 
 public class MethodsFragment extends Fragment {
 
@@ -29,7 +29,6 @@ public class MethodsFragment extends Fragment {
         // init click declarations
         view.findViewById(R.id.cv_gallery).setOnClickListener(onClickListener);
         view.findViewById(R.id.cv_camera).setOnClickListener(onClickListener);
-        view.findViewById(R.id.cv_live).setOnClickListener(onClickListener);
     }
 
 
@@ -43,10 +42,7 @@ public class MethodsFragment extends Fragment {
                     startActivity(new Intent(getContext(),GalleryActivity.class));
                     break;
                 case R.id.cv_camera:
-                    // TODO activity intent
-                    break;
-                case R.id.cv_live:
-                    // TODO activity intent
+                    startActivity(new Intent(getContext(), CameraActivity.class));
                     break;
             }
 

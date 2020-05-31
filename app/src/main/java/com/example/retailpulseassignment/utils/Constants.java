@@ -9,4 +9,11 @@ public class Constants {
     public static final float IMAGE_STD = 128.0f;
     public static final int INPUT_SIZE = 300;
 
+    // Constant Value for action intents
+    public static final int PICK_IMAGE_REQUEST = 2;
+
+    // Constant values for bundle arguments
+    public static final String IMAGE_URL = "image_url";
+    public static final String IMAGE_URLS_LIST = "image_urls_list";
+
 }
