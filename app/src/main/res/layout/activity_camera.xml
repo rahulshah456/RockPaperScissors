@@ -77,6 +77,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/app_bar_color"
             android:text="@string/predict"
+            android:textColor="@color/text_color_header"
             android:layout_marginBottom="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
