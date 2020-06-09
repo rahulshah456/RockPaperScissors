@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Retail Pulse Assignment</string>
+    <string name="app_name">Rock Papers Scissors</string>
     <string name="app_desc">Rock Paper Scissors</string>
     <string name="feature_desc">This app detects whether a hand gesture is Rock, Paper or Scissors by using a custom remote Tensorflow Lite model deployed in Firebase via ML Kit. You can play with this feature through the following methods.</string>
     <string name="gallery_header">From Gallery</string>
@@ -11,6 +11,7 @@
     <string name="rock">Rock!</string>
     <string name="paper">Paper!</string>
     <string name="scissor">Scissor!</string>
+    <string name="error">Error!</string>
     <string name="probability">Probability: Not Available</string>
     <string name="downloading_ml_model">Downloading ML Model</string>
     <string name="predict">Predict</string>
