@@ -34,3 +34,4 @@ This app detects whether a hand gesture is Rock, Paper or Scissors by using a cu
 - Model : [Tensorflow Lite Model](https://github.com/rahulshah456/RetailPulseAssignment/blob/master/model/rps_model.tflite)
 - Labels : [TSV File](https://github.com/rahulshah456/RetailPulseAssignment/blob/master/app/src/main/assets/rps_labels.tsv)
 - Output Vectors : [TSV File](https://github.com/rahulshah456/RetailPulseAssignment/blob/master/app/src/main/assets/rps_vecs.tsv)
+- RPS Test Images : [Image Sets](https://github.com/rahulshah456/RockPaperScissors/tree/master/rps_test_sets)
