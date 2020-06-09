@@ -1,4 +1,4 @@
-package com.example.retailpulseassignment.views.fragments
+package com.rahulshah456.rockpaperscissors.views.fragments
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -17,10 +17,10 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
-import com.example.retailpulseassignment.R
-import com.example.retailpulseassignment.mlkit.FirebaseMethods
-import com.example.retailpulseassignment.mlkit.FirebaseMethods.FirebaseMethodsListener
-import com.example.retailpulseassignment.utils.Constants.IMAGE_URL
+import com.rahulshah456.rockpaperscissors.R
+import com.rahulshah456.rockpaperscissors.mlkit.FirebaseMethods
+import com.rahulshah456.rockpaperscissors.mlkit.FirebaseMethods.FirebaseMethodsListener
+import com.rahulshah456.rockpaperscissors.utils.Constants.IMAGE_URL
 import com.google.firebase.ml.common.FirebaseMLException
 
 class SoloGalleryFragment : Fragment() {

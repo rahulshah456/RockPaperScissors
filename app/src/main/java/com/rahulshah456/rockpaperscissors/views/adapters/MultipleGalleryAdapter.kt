@@ -1,4 +1,4 @@
-package com.example.retailpulseassignment.views.adapters
+package com.rahulshah456.rockpaperscissors.views.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
-import com.example.retailpulseassignment.R
-import com.example.retailpulseassignment.views.adapters.MultipleGalleryAdapter.GalleryViewHolder
+import com.rahulshah456.rockpaperscissors.R
+import com.rahulshah456.rockpaperscissors.views.adapters.MultipleGalleryAdapter.GalleryViewHolder
 import java.util.*
 
 class MultipleGalleryAdapter(private val mContext: Context, private val mImagesList: ArrayList<String>,

@@ -1,9 +1,9 @@
-package com.example.retailpulseassignment.views.activities
+package com.rahulshah456.rockpaperscissors.views.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.retailpulseassignment.R
-import com.example.retailpulseassignment.views.fragments.DownloadFragment
+import com.rahulshah456.rockpaperscissors.R
+import com.rahulshah456.rockpaperscissors.views.fragments.DownloadFragment
 
 class MainActivity : AppCompatActivity() {
 

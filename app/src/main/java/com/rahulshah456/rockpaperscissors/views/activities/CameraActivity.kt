@@ -1,4 +1,4 @@
-package com.example.retailpulseassignment.views.activities
+package com.rahulshah456.rockpaperscissors.views.activities
 
 import android.graphics.Bitmap
 import android.os.Bundle
@@ -8,10 +8,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
-import com.example.retailpulseassignment.R
-import com.example.retailpulseassignment.mlkit.FirebaseMethods
-import com.example.retailpulseassignment.mlkit.FirebaseMethods.FirebaseMethodsListener
-import com.example.retailpulseassignment.views.activities.CameraActivity
+import com.rahulshah456.rockpaperscissors.R
+import com.rahulshah456.rockpaperscissors.mlkit.FirebaseMethods
+import com.rahulshah456.rockpaperscissors.mlkit.FirebaseMethods.FirebaseMethodsListener
 import com.google.firebase.ml.common.FirebaseMLException
 import com.wonderkiln.camerakit.*
 

@@ -1,7 +1,7 @@
-package com.example.retailpulseassignment.mlkit
+package com.rahulshah456.rockpaperscissors.mlkit
 
 import android.graphics.Bitmap
-import com.example.retailpulseassignment.utils.Constants
+import com.rahulshah456.rockpaperscissors.utils.Constants
 import org.apache.commons.math3.ml.distance.EuclideanDistance
 import java.io.IOException
 import java.nio.ByteBuffer

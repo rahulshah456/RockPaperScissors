@@ -1,10 +1,10 @@
-package com.example.retailpulseassignment.mlkit
+package com.rahulshah456.rockpaperscissors.mlkit
 
 import android.content.Context
 import android.graphics.Bitmap
-import com.example.retailpulseassignment.R
-import com.example.retailpulseassignment.mlkit.Classifier.Companion.convertBitmapToByteBuffer
-import com.example.retailpulseassignment.utils.Constants.INPUT_SIZE
+import com.rahulshah456.rockpaperscissors.R
+import com.rahulshah456.rockpaperscissors.mlkit.Classifier.Companion.convertBitmapToByteBuffer
+import com.rahulshah456.rockpaperscissors.utils.Constants.INPUT_SIZE
 import com.google.firebase.ml.common.FirebaseMLException
 import com.google.firebase.ml.custom.*
 import java.io.IOException

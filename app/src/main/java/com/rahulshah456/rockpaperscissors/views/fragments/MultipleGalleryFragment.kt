@@ -1,4 +1,4 @@
-package com.example.retailpulseassignment.views.fragments
+package com.rahulshah456.rockpaperscissors.views.fragments
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -15,11 +15,11 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.retailpulseassignment.R
-import com.example.retailpulseassignment.mlkit.FirebaseMethods
-import com.example.retailpulseassignment.mlkit.FirebaseMethods.FirebaseMethodsListener
-import com.example.retailpulseassignment.utils.Constants.IMAGE_URLS_LIST
-import com.example.retailpulseassignment.views.adapters.MultipleGalleryAdapter
+import com.rahulshah456.rockpaperscissors.R
+import com.rahulshah456.rockpaperscissors.mlkit.FirebaseMethods
+import com.rahulshah456.rockpaperscissors.mlkit.FirebaseMethods.FirebaseMethodsListener
+import com.rahulshah456.rockpaperscissors.utils.Constants.IMAGE_URLS_LIST
+import com.rahulshah456.rockpaperscissors.views.adapters.MultipleGalleryAdapter
 import com.google.firebase.ml.common.FirebaseMLException
 import java.io.IOException
 import java.util.*

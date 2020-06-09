@@ -1,16 +1,15 @@
-package com.example.retailpulseassignment.views.activities
+package com.rahulshah456.rockpaperscissors.views.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.retailpulseassignment.R
-import com.example.retailpulseassignment.utils.Constants.IMAGE_URL
-import com.example.retailpulseassignment.utils.Constants.IMAGE_URLS_LIST
-import com.example.retailpulseassignment.utils.Constants.PICK_IMAGE_REQUEST
-import com.example.retailpulseassignment.views.fragments.MultipleGalleryFragment
-import com.example.retailpulseassignment.views.fragments.SoloGalleryFragment
+import com.rahulshah456.rockpaperscissors.R
+import com.rahulshah456.rockpaperscissors.utils.Constants.IMAGE_URL
+import com.rahulshah456.rockpaperscissors.utils.Constants.IMAGE_URLS_LIST
+import com.rahulshah456.rockpaperscissors.utils.Constants.PICK_IMAGE_REQUEST
+import com.rahulshah456.rockpaperscissors.views.fragments.MultipleGalleryFragment
+import com.rahulshah456.rockpaperscissors.views.fragments.SoloGalleryFragment
 import com.google.android.material.appbar.MaterialToolbar
 import java.util.*
 

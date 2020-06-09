@@ -1,4 +1,4 @@
-package com.example.retailpulseassignment.views.fragments
+package com.rahulshah456.rockpaperscissors.views.fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,9 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.retailpulseassignment.R
-import com.example.retailpulseassignment.views.activities.CameraActivity
-import com.example.retailpulseassignment.views.activities.GalleryActivity
+import com.rahulshah456.rockpaperscissors.R
+import com.rahulshah456.rockpaperscissors.views.activities.CameraActivity
+import com.rahulshah456.rockpaperscissors.views.activities.GalleryActivity
 
 class MethodsFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

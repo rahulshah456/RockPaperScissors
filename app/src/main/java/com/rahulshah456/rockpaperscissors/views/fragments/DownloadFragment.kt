@@ -1,11 +1,11 @@
-package com.example.retailpulseassignment.views.fragments
+package com.rahulshah456.rockpaperscissors.views.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.retailpulseassignment.R
+import com.rahulshah456.rockpaperscissors.R
 import com.google.firebase.ml.common.modeldownload.FirebaseModelDownloadConditions
 import com.google.firebase.ml.common.modeldownload.FirebaseModelManager
 import com.google.firebase.ml.custom.FirebaseCustomRemoteModel

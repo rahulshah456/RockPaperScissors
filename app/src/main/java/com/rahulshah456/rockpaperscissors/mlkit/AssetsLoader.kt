@@ -1,4 +1,4 @@
-package com.example.retailpulseassignment.mlkit
+package com.rahulshah456.rockpaperscissors.mlkit
 
 import android.content.Context
 import java.io.BufferedReader

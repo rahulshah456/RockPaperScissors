@@ -1,4 +1,4 @@
-package com.example.retailpulseassignment;
+package com.rahulshah456.rockpaperscissors;
 
 import org.junit.Test;
 

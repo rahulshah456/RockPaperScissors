@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.retailpulseassignment">
+    package="com.rahulshah456.rockpaperscissors">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -16,10 +16,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".views.activities.CameraActivity"></activity>
-        <activity android:name=".views.activities.GalleryActivity" />
+        <activity android:name="com.rahulshah456.rockpaperscissors.views.activities.CameraActivity"></activity>
+        <activity android:name="com.rahulshah456.rockpaperscissors.views.activities.GalleryActivity" />
         <activity
-            android:name=".views.activities.MainActivity"
+            android:name="com.rahulshah456.rockpaperscissors.views.activities.MainActivity"
             android:theme="@style/SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,4 +1,4 @@
-package com.example.retailpulseassignment.utils
+package com.rahulshah456.rockpaperscissors.utils
 
 object Constants {
     // Constant Values for Normalization
